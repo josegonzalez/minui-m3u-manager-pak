@@ -109,7 +109,7 @@ generate_m3u_file() {
     sync
 
     cd "$M3U_PATH" || true
-    find . ! -iname '*.m3u' -type f -iname "$FILE_NAME*.*[cue|gdi|chd|pbp|iso|dsk]" | sed -e 's|^./||' | sort >"$M3U_PATH.m3u"
+    find . ! -iname '*.m3u' -type f -iname "$FILE_NAME*.*[cue|gdi|chd|pbp|iso|dsk]" | sed -e 's|^./||' | sort >"$M3U_PATH/$FILE_NAME.m3u"
     sync
 }
 
