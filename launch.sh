@@ -34,16 +34,16 @@ EOF
     minui-list --disable-auto-sleep --item-key "folders" --file "/tmp/minui-list-input" --format text --cancel-text "EXIT" --title "M3U Manager" --write-location /tmp/minui-list-output --write-value state
 }
 
-populate_emus_list() {
-    ls -A "$SDCARD_PATH/Roms" | sort >/tmp/emus
+populate_emulator_list() {
+    ls -A "$SDCARD_PATH/Roms" | sort >/tmp/emulators
 
-    touch /tmp/emus.list
+    touch /tmp/emulators.list
     while read -r folder; do
         if [ -n "$(ls -A "$SDCARD_PATH/Roms/$folder" 2>/dev/null | grep -v '^\.' | grep -v '\.txt$')" ]; then
-            basename "$folder" >>/tmp/emus.list
+            basename "$folder" >>/tmp/emulators.list
         fi
-    done </tmp/emus
-    sed -i '/^[.]/d; /^APPS/d; /^PORTS/d' /tmp/emus.list
+    done </tmp/emulators
+    sed -i '/^[.]/d; /^APPS/d; /^PORTS/d' /tmp/emulators.list
 }
 
 emulator_menu() {
@@ -51,13 +51,13 @@ emulator_menu() {
     rm -f "$minui_list_file" "/tmp/minui-list-output"
     touch "$minui_list_file"
 
-    if [ ! -f "/tmp/emus.list" ]; then
-        show_message "Populating emus list" forever
-        populate_emus_list
+    if [ ! -f "/tmp/emulators.list" ]; then
+        show_message "Populating emulator list" forever
+        populate_emulator_list
     fi
 
     killall minui-presenter >/dev/null 2>&1 || true
-    minui-list --disable-auto-sleep --item-key "folders" --file "/tmp/emus.list" --format text --cancel-text "EXIT" --title "Choose Emulator" --write-location /tmp/minui-output --write-value state
+    minui-list --disable-auto-sleep --item-key "folders" --file "/tmp/emulators.list" --format text --cancel-text "EXIT" --title "Choose Emulator" --write-location /tmp/minui-list-output --write-value state
 }
 
 generate_cue_files() {
