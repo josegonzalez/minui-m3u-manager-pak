@@ -101,7 +101,7 @@ generate_m3u_file() {
     mkdir -p "$M3U_PATH"
     sync
 
-    find . -maxdepth 1 ! -iname '*.m3u' -type f -iname "$FILE_NAME*.*" -exec mv -n -- '{}' "$M3U_PATH" \;
+    find . -maxdepth 1 ! -iname '*.m3u' -type f -iname "$FILE_NAME*.*[cue|gdi|chd|pbp|iso|dsk]" -exec mv -n -- '{}' "$M3U_PATH" \;
     sync
 
     cd "$M3U_PATH" || true
