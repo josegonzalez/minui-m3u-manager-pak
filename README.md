@@ -29,7 +29,7 @@ Use the correct platform for your device.
 > [!IMPORTANT]
 > If the zip file was not extracted correctly, the pak may show up under `Tools > M3U`. Rename the folder to `M3U Manager.pak` to fix this.
 
-Browse to Tools > M3U Manager and press A to enter the Pak. This will display two options:
+Browse to `Tools > M3U Manager` and press A to enter the Pak. This will display two options:
 
 - Generate M3U files: Generates M3U files for `chd`, `cue`, `dsk`, `gdi`, `iso`, and `pbp`.
 - Generate Missing CUE files: Generates missing `cue` files for any `bin` files.
@@ -38,4 +38,4 @@ Choosing any option will allow you to choose an emulator folder to process. Only
 
 ### Debug Logging
 
-Debug logs will be written to the ~$SDCARD_PATH/.userdata/$PLATFORM/logs/~ folder.
+Debug logs will be written to the `$SDCARD_PATH/.userdata/$PLATFORM/logs/` folder.
