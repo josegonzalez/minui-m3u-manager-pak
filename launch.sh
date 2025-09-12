@@ -200,8 +200,16 @@ main() {
         fi
 
         # Show action menu
-        emulator=$(emulator_menu "$selection")
+        emulator_menu "$selection"
         if [ $? -ne 0 ]; then
+            continue
+        fi
+
+        output="$(cat /tmp/minui-list-output)"
+        emulator_index="$(echo "$output" | jq -r '.selected')"
+        emulator="$(echo "$output" | jq -r ".folders[$emulator_index].name")"
+        if [ -z "$emulator" ]; then
+            show_message "No emulator selected" forever
             continue
         fi
 
