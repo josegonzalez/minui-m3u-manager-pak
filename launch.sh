@@ -125,6 +125,7 @@ generate_m3u_files() {
         game_name="$(echo "${line%.*}" | sed 's@./@@g' | sed 's@([Dd][Ii][Ss][KkCc] 1.*@@g')"
         game_name="${game_name%"${game_name##*[![:space:]]}"}" # remove spaces at the end
         m3u_folder="$SDCARD_PATH/Roms/$emulator/$game_name"
+        cd "$SDCARD_PATH/Roms/$emulator" || exit 1
         generate_m3u_file "$game_name" "$m3u_folder"
     done
 }
