@@ -34,7 +34,7 @@ Browse to Tools > M3U Manager and press A to enter the Pak. This will display tw
 - Generate M3U files: Generates M3U files for `chd`, `cue`, `dsk`, `gdi`, `iso`, and `pbp`.
 - Generate Missing CUE files: Generates missing `cue` files for any `bin` files.
 
-Choosing any option will allow you to choose an emulator folder to process.
+Choosing any option will allow you to choose an emulator folder to process. Only emulators directly containing files `chd`, `cue`, `dsk`, `gdi`, `iso`, and `pbp` (and not in a subfolder) will be visible.
 
 ### Debug Logging
 

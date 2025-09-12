@@ -39,11 +39,15 @@ populate_emulator_list() {
 
     touch /tmp/emulators.list
     while read -r folder; do
-        if [ -n "$(ls -A "$SDCARD_PATH/Roms/$folder" 2>/dev/null | grep -v '^\.' | grep -v '\.txt$')" ]; then
+        cd "$SDCARD_PATH/Roms/$folder" || exit 1
+        output="$(find . -type f \( -name "*.chd" -o -name "*.cue" -name "*.dsk" -o -name "*.gdi" -o -name "*.iso" -o -name "*.pbp" -o \))"
+        if [ -n "$output" ]; then
             basename "$folder" >>/tmp/emulators.list
         fi
     done </tmp/emulators
+
     sed -i '/^[.]/d; /^APPS/d; /^PORTS/d' /tmp/emulators.list
+    cd "$PAK_DIR" || exit 1
 }
 
 emulator_menu() {
