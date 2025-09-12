@@ -153,7 +153,7 @@ show_message() {
 
 cleanup() {
     rm -f /tmp/stay_awake
-    rm -f /tmp/minui-list-input /tmp/minui-list-output
+    rm -f /tmp/minui-list-input /tmp/minui-list-output /tmp/emulators.list
     killall minui-presenter >/dev/null 2>&1 || true
 }
 
