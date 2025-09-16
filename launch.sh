@@ -39,6 +39,10 @@ populate_emulator_list() {
 
     touch /tmp/emulators.list
     while read -r folder; do
+        if [ ! -d "$SDCARD_PATH/Roms/$folder" ]; then
+            continue
+        fi
+
         cd "$SDCARD_PATH/Roms/$folder" || exit 1
         output="$(find . -type f \( -name "*.chd" -o -name "*.cue" -name "*.dsk" -o -name "*.gdi" -o -name "*.iso" -o -name "*.pbp" -o \))"
         if [ -n "$output" ]; then
