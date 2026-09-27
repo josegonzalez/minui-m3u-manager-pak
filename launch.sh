@@ -224,7 +224,7 @@ main() {
         if [ "$selection" = "Generate M3U files" ]; then
             show_message "Generating M3U files for $emulator" forever
             generate_m3u_files "$emulator"
-        elif [ "$emulator" = "Generate Missing CUE files" ]; then
+        elif [ "$selection" = "Generate Missing CUE files" ]; then
             generate_cue_files "$emulator"
         fi
     done
