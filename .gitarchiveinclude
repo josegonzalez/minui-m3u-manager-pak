@@ -1,5 +1,7 @@
 bin/arm/jq
 bin/arm64/jq
+bin/h700/minui-list
+bin/h700/minui-presenter
 bin/miyoomini/minui-list
 bin/miyoomini/minui-presenter
 bin/my282/minui-list
