@@ -18,6 +18,10 @@ if uname -m | grep -q '64'; then
 fi
 
 export PATH="$PAK_DIR/bin/$architecture:$PAK_DIR/bin/$PLATFORM:$PAK_DIR/bin:$PATH"
+
+if [ "$DEVICE" = "rgsp" ]; then
+    export RGXX_MODEL="RG34xx"
+fi
 export LD_LIBRARY_PATH="$PAK_DIR/lib/$architecture:$PAK_DIR/lib/$PLATFORM:$PAK_DIR/lib:$LD_LIBRARY_PATH"
 
 main_screen() {
@@ -31,7 +35,7 @@ Generate Missing CUE files
 EOF
 
     killall minui-presenter >/dev/null 2>&1 || true
-    minui-list --disable-auto-sleep --item-key "folders" --file "/tmp/minui-list-input" --format text --cancel-text "EXIT" --title "M3U Manager" --write-location /tmp/minui-list-output --write-value state
+    minui-list --disable-auto-sleep --item-key "folders" --file "/tmp/minui-list-input" --format text --cancel-text "EXIT" --title "M3U Manager" --write-location /tmp/minui-list-output --write-value state 1>&2
 }
 
 populate_emulator_list() {
@@ -65,7 +69,7 @@ emulator_menu() {
     fi
 
     killall minui-presenter >/dev/null 2>&1 || true
-    minui-list --disable-auto-sleep --item-key "folders" --file "/tmp/emulators.list" --format text --cancel-text "EXIT" --title "Choose Emulator" --write-location /tmp/minui-list-output --write-value state
+    minui-list --disable-auto-sleep --item-key "folders" --file "/tmp/emulators.list" --format text --cancel-text "EXIT" --title "Choose Emulator" --write-location /tmp/minui-list-output --write-value state 1>&2
 }
 
 generate_cue_files() {
@@ -170,7 +174,7 @@ main() {
         export PLATFORM="tg5040"
     fi
 
-    allowed_platforms="miyoomini my282 my355 rg35xxplus tg5040 tg5050 trimuismart"
+    allowed_platforms="h700 miyoomini my282 my355 rg35xxplus tg5040 tg5050 trimuismart"
     if ! echo "$allowed_platforms" | grep -q "$PLATFORM"; then
         show_message "$PLATFORM is not a supported platform" 2
         return 1
